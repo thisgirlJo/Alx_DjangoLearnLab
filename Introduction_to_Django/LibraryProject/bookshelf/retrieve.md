@@ -1,4 +1,4 @@
 ```python
 from bookshelf.models import Book
-book = Book.objects.get()[0]
+book = Book.objects.get('1984')
 ```

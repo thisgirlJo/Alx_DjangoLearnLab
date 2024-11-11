@@ -9,12 +9,12 @@ def list_books(request):
     format = {'list_books': books}
     return render(request, 'books/list_books.html', format)
 
-class BookListView(ListView, DetailView):
+class BookListView(ListView):
     '''A class-based view inheriting from the ListView class'''
     model = Library
     template_name = 'library/library_detail.html'
 
     def get_list_data(self):
-        library = Library.object.get(f'{Library.name}')
+        library = Library.object.get()
         format = {'library': library}
         return format

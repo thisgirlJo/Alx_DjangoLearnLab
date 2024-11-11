@@ -10,9 +10,10 @@ def list_books(request):
 class BookListView(ListView):
     '''A class-based view inheriting from the ListView class'''
     model = Library
-    template_name = 'library/library_detail.html'
+    template_name = 'relationship_app/library_detail.html'
 
     def get_list_data(self):
         library = Library.object.get()
         format = {'library': library}
         return format
+        #return render(request, 'relationship_app/list_books.html', Book.objects.all())

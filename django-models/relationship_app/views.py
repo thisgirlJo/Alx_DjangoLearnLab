@@ -5,9 +5,7 @@ from .models import Book, Library
 
 # Create your views here.
 def list_books(request):
-    books = Book.object.all()
-    format = {'list_books': books}
-    return render(request, 'books/list_books.html', format)
+    return render(request, 'relationship_app/list_books.html', Book.objects.all())
 
 class BookListView(ListView):
     '''A class-based view inheriting from the ListView class'''

@@ -9,7 +9,7 @@ from .models import Library
 def list_books(request):
     return render(request, 'relationship_app/list_books.html', Book.objects.all())
 
-class BookListView(ListView, DetailView):
+class LibraryListView(ListView, DetailView):
     '''A class-based view inheriting from the ListView class'''
     model = Library
     template_name = 'relationship_app/library_detail.html'
@@ -17,5 +17,5 @@ class BookListView(ListView, DetailView):
     def get_list_data(self):
         library = Library.object.get()
         format = {'library': library}
-        return format
-        #return render(request, 'relationship_app/list_books.html', Book.objects.all())
+        #return format
+        return render(request, 'relationship_app/list_books.html', Book.objects.all())

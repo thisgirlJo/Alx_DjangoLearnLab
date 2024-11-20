@@ -24,7 +24,7 @@ class LibraryListView(ListView, DetailView):
         #return format
         return render(request, 'relationship_app/list_books.html', Book.objects.all())
 
-def signup(request):
+def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():

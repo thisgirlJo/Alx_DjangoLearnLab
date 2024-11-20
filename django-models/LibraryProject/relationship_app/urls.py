@@ -14,7 +14,7 @@ urlpatterns = [
     #User Auth
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
-    path('register/', views.signup, name='register'),
+    path('register/', views.register, name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
     #path('accounts/profile/', TemplateView.as_view(template_name='accounts/profile.html'), name='profile'),
     #path("register/", SignUpView.as_view(), name="templates/registration/signup"),

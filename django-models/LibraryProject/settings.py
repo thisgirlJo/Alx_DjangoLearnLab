@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'relationship_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #'bookshelf.apps.BookshelfConfig',
-    'relationship_app.apps.RelationshipAppConfig',
+    #relationship_app.apps.RelationshipAppConfig,
 ]
 
 MIDDLEWARE = [

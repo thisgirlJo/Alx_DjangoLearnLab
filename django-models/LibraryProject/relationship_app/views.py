@@ -40,11 +40,11 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/register.html'
 
-def custom_logout_view(request):
+""" def custom_logout_view(request):
     logout(request)
 
     # Dynamically generate the logout URL
     logout_url = reverse('register')
 
     # Redirect to the logout URL
-    return redirect(logout_url)
+    return redirect(logout_url) """

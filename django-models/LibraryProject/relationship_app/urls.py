@@ -2,7 +2,7 @@ from django.urls import path, include
 from . import views
 #from .views import BookListView
 from .views import list_books
-from .views import register, custom_logout_view
+from .views import register
 #User Authentication for Login, Logout and Signup
 #from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView, LogoutView
@@ -13,7 +13,7 @@ urlpatterns = [
     #path('library/', LibraryDetailView.as_view, name='library'),
     #User Auth
     path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
-    path('logout/', custom_logout_view, name='logout'),
+    path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
     path('register/', views.register, name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
     #path('accounts/profile/', TemplateView.as_view(template_name='accounts/profile.html'), name='profile'),

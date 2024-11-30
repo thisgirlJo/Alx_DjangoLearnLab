@@ -18,7 +18,7 @@ class LibraryListView(ListView, DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
 
-    def get_list_data(request):
+    def get_list_data(self, request):
         library = Library.object.get()
         format = {'library': library}
         #return format

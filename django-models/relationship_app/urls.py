@@ -1,11 +1,11 @@
 from django.urls import path, include
+#User Authentication for Login, Logout and Signup
+#from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 #from .views import BookListView
 from .views import list_books
 from .views import register
-#User Authentication for Login, Logout and Signup
-#from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import LoginView, LogoutView
 
 #URLConf
 urlpatterns = [

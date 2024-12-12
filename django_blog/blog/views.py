@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 #from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .form import RegistrationForm
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import RegistrationForm
 
 # Create your views here.
 def register(request):
@@ -14,10 +15,10 @@ def register(request):
             messages.success(request, f'Account created for {username}!') # Show sucess message when account is created
             return redirect('login')
     else:
-        form = RegistrationForm()
-    return render(request, 'registration/register.html', {'form': form})
+        form = AuthenticationForm()
+    return render(request, 'blog/register.html', {'form': form})
 
-@login_required
+""" @login_required
 def profile_view(request):
     # This view can only be accessed by authenticated users
-    return render(request, 'blog/base.html')
+    return render(request, 'blog/base.html') """

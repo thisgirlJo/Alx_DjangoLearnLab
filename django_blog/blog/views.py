@@ -43,4 +43,3 @@ def base_view(request):
 
 def home_view(request):
     return render(request, 'blog/home.html')
-

@@ -33,22 +33,22 @@
  <form method="post" action="{% url 'register' %}">
    {% csrf_token%}
    <div class="mb-3">
-      {{ form.username|as_crispy_field }}
+      {{ User.username|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ form.email|as_crispy_field }}
+      {{ User.email|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ form.first_name|as_crispy_field }}
+      {{ User.first_name|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ form.last_name|as_crispy_field }}
+      {{ User.last_name|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ form.password1|as_crispy_field }}
+      {{ User.password1|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ form.password2|as_crispy_field }}
+      {{ User.password2|as_crispy_field }}
   </div>
   <button type="submit" class="btn btn-dark w-100">Register</button>
   <p class="text-center p-1">Have already an account? <a href="{% url 'login' %}">Login here</a></p>

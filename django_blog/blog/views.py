@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.views.generic import CreateView, ListView, DeleteView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegistrationForm, UserUpdateForm, ProfileUpdateForm
+from .models import Post
 
 # Create your views here.
 def register(request):
@@ -14,7 +15,7 @@ def register(request):
             messages.success(request, f'Account created for {username}!') # Show sucess message when account is created
             return redirect('login')
     else:
-        form = AuthenticationForm()
+        form = RegistrationForm()
     return render(request, 'blog/register.html', {'form': form})
 
 @login_required
@@ -43,3 +44,22 @@ def base_view(request):
 
 def home_view(request):
     return render(request, 'blog/home.html')
+
+class PostListView(ListView):
+    model = Post
+    Post.objects.all()
+    template_name = 'blog/post_list.html'
+    context_object_name = 'posts'
+
+class PostDetailView():
+    model = Post
+    Post.objects.all()
+    template_name = 'blog/post_detail.html'
+class PostCreateView():
+    model = Post
+    Post.objects.create()
+    fields = ['title', 'content']
+class PostUpdateView():
+    ...
+class PostDeleteView():
+    ...

@@ -13,9 +13,12 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'posts' %}">Blog Posts</a></li>
+                {% comment %} <li><a href="{% url 'posts' %}">Blog Posts</a></li> {% endcomment %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

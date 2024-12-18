@@ -65,6 +65,9 @@ class PostCreateView(CreateView):
     template_name = 'blog/post_create.html'
 
 class PostUpdateView():
-    ...
+    model = Post
+    template_name = 'blog/post_update.html'
+
 class PostDeleteView():
-    ...
+    model = Post
+    template_name = 'blog/post_delete.html'

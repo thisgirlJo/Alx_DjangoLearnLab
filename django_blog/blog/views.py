@@ -2,21 +2,22 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import CreateView, ListView, DeleteView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegistrationForm,UserUpdateForm, ProfileUpdateForm, PostCreateForm
 from .models import Post
 
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username') # Get the username that is submitted
             messages.success(request, f'Account created for {username}!') # Show sucess message when account is created
             return redirect('login')
     else:
-        form = RegistrationForm()
+        form = UserRegistrationForm()
     return render(request, 'blog/register.html', {'form': form})
+
 
 @login_required
 def profile_view(request):
@@ -47,18 +48,22 @@ def home_view(request):
 
 class PostListView(ListView):
     model = Post
-    Post.objects.all()
     template_name = 'blog/post_list.html'
-    context_object_name = 'posts'
+    context_object_name = 'post_list'
+    fields = '__all__'
+
 
 class PostDetailView():
     model = Post
-    Post.objects.all()
     template_name = 'blog/post_detail.html'
-class PostCreateView():
-    model = Post
-    Post.objects.create()
-    fields = ['title', 'content']
+    context_object_name = 'post_detail'
+    #queryset = Post.objects.all()
+
+
+class PostCreateView(CreateView):
+    model = Post   
+    template_name = 'blog/post_create.html'
+
 class PostUpdateView():
     ...
 class PostDeleteView():

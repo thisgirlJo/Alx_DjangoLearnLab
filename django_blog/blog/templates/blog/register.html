@@ -10,7 +10,7 @@
        <ul>
            <li><a href="{% url 'home' %}">Home</a></li>
            <li><a>Blog Posts</a></li>
-           <li><a>Login</a></li>
+           <li><a href="{% url 'Login' %}">Login</a></li>
        </ul>
    </nav>
 </header>
@@ -33,22 +33,22 @@
  <form method="post" action="{% url 'register' %}">
    {% csrf_token%}
    <div class="mb-3">
-      {{ User.username|as_crispy_field }}
+      {{ form.username|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ User.email|as_crispy_field }}
+      {{ form.email|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ User.first_name|as_crispy_field }}
+      {{ form.first_name|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ User.last_name|as_crispy_field }}
+      {{ form.last_name|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ User.password1|as_crispy_field }}
+      {{ form.password1|as_crispy_field }}
   </div>
   <div class="mb-3">
-      {{ User.password2|as_crispy_field }}
+      {{ form.password2|as_crispy_field }}
   </div>
   <button type="submit" class="btn btn-dark w-100">Register</button>
   <p class="text-center p-1">Have already an account? <a href="{% url 'login' %}">Login here</a></p>

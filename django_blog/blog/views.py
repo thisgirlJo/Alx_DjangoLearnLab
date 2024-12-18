@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import CreateView, ListView, DeleteView, DetailView, UpdateView
@@ -53,21 +55,41 @@ class PostListView(ListView):
     fields = '__all__'
 
 
-class PostDetailView():
+class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post_detail'
     #queryset = Post.objects.all()
 
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post   
     template_name = 'blog/post_create.html'
+    fields = ['title', 'content']
 
-class PostUpdateView():
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # Set the author to the logged-in user
+        return super().form_valid(form)
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
     model = Post
     template_name = 'blog/post_update.html'
+    def form_valid(self, form):
+        # Ensure the author remains the same
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
-class PostDeleteView():
+    def test_func(self):
+        # Check if the current user is the author of the post
+        post = self.get_object()
+        return self.request.user == post.author
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'blog/post_delete.html'
+    success_url = '/'
+
+    def test_func(self):
+        # Check if the current user is the author of the post
+        post = self.get_object()
+        return self.request.user == post.author

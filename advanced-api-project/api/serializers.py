@@ -5,6 +5,15 @@ from datetime import date
 """ The BookSerializer serializes all fields of the Book Model
 with a custom validation function that ensures the publication_year is never in the future
 """
+
+"""
+The Author Serializer serializes the name field of the Authoe Model
+"""
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ['name']
+
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
@@ -17,12 +26,8 @@ class BookSerializer(serializers.ModelSerializer):
                 "Incorrect Date Time"
             )
         return data
+    author = AuthorSerializer(read_only=True)
 
-"""
-The Author Serializer serializes the name field of the Authoe Model
-"""
-class AuthorSerializer(serializers.ModelSerializer):
-    books = BookSerializer(many=True, read_only=True)
-    class Meta:
-        model = Author
-        fields = ['name']
+    def create(self, validated_data):
+        author_data = validated_data.pop('author')
+        

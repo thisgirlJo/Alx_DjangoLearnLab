@@ -39,3 +39,11 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+    
+    class Meta:
+        permissions = [
+            ("can_view", "Can view"),
+            ("can_create", "Can create"),
+            ("can_edit", "Can edit"),
+            ("can_delete", "Can delete"),
+        ]

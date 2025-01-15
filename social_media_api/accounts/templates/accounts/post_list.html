@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <h2>Blog Post</h2>
+    {% if post_list%}
+        <ul>
+            {% for posts in post_list %}
+                <li>{{ post.title }}</li>
+                    <p>{{ post.content}}</p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p> No Available Blog Post</p>
+    {% endif %}
+{% endblock %}
